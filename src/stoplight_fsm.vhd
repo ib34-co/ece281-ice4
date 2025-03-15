@@ -87,11 +87,15 @@ begin
 	
 	-- PROCESSES ----------------------------------------	
 	-- state memory w/ asynchronous reset ---------------
-	register_proc : process (  )
+	register_proc : process ( i_clk, i_reset )
 	begin
+    if i_reset = '1' then
+        f_Q <= "10";        -- reset state is yellow
+    elsif (rising_edge(i_clk)) then
+        f_Q <= f_Q_next;    -- next state becomes current state
+    end if;
 			--Reset state is yellow
-
-
+			
 	end process register_proc;
 	-------------------------------------------------------
 	
